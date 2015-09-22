@@ -1,0 +1,36 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "22.0.1"
+
+    defaultConfig {
+        applicationId "com.example"
+        minSdkVersion 19
+        targetSdkVersion 22
+        versionCode 1
+        versionName "1.0"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+
+    sourceSets.main.java.srcDirs += ['src/stuff/java']
+    sourceSets.test.java.srcDirs = ['src/stuffTest/java']
+}
+
+kapt {
+    generateStubs = true
+}
+
+dependencies {
+    testCompile "junit:junit:4.12"
+    kaptTest "com.google.dagger:dagger-compiler:2.0.1"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.6'
+}
